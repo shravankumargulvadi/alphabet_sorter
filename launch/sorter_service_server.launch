@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="alphabet_sorter"
+          type="sorter_service.py"
+          name=''
+          output="screen">
+    </node>
+</launch>

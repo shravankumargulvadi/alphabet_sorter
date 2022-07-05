@@ -1,0 +1,8 @@
+<launch>
+    <include file="$(find alphabet_sorter)/launch/sorter_service_server.launch"/>
+        <node pkg="alphabet_sorter"
+              type="sorter_service_client.py"
+              name=''
+              output="screen">
+        </node>
+</launch>
