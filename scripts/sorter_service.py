@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 import sys
 import rospy
+import re
 from alphabet_sorter.srv import sort_stringMessage, sort_stringMessageResponse
 from std_srvs.srv import Empty, EmptyResponse
 from std_msgs.msg import String
@@ -8,7 +9,8 @@ from std_msgs.msg import String
 def callback(request):
 #this callback is called each time client sends data to the server
     print('sorting',request.string_input)
-    data=request.string_input[6:].strip('"').replace(" ","") #data preprocessing: strip unnecessary characters and spaces
+    data=re.sub('[^a-zA-Z0-9]',' ',request.string_input[6:]).replace(" ","") #data preprocessing: strip unnecessary characters and spaces
+    print(data)
     result=''.join(sorted(data)) #sort and join
     print('result after sorting:',result) #print result in the terminal
     pub.publish(result) #publish to the /output topic
